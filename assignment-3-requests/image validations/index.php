@@ -73,39 +73,48 @@
     </head>
     <body>
     <div class="container mt-5">
-        <form action="index.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Title:</label>
-                <input type="text" class="form-control" name="title">
-                <small class="text-danger"><?php echo $titleError; ?></small>
-            </div>
-            
-            <div class="form-group">
-                <label>Description:</label>
-                <input type="text" class="form-control" name="description">
-                <small class="text-danger"><?php echo $descriptionError; ?></small>
-            </div>
-            
-            <div class="form-group">
-                <label>Price:</label>
-                <input type="text" class="form-control" name="price">
-                <small class="text-danger"><?php echo $priceError; ?></small>
-            </div>
-            
-            <div class="form-group">
-                <label>Quantity:</label>
-                <input type="text" class="form-control" name="quantity">
-                <small class="text-danger"><?php echo $quantityError; ?></small>
-            </div>
-            
-            <div class="form-group">
-                <label>Upload image:</label>
-                <input type="file" class="form-control-file" name="image">
-                <small class="text-danger"><?php echo $imgError; ?></small>
-            </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 p-4 shadow-sm rounded border">
+                <h2 class="text-center pb-5">Product form</h2>
+                <form action="index.php" method="post" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Title:</label>
+                            <input type="text" class="form-control" name="title">
+                            <small class="text-danger"><?php echo $titleError; ?></small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Description:</label>
+                            <input type="text" class="form-control" name="description">
+                            <small class="text-danger"><?php echo $descriptionError; ?></small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Price:</label>
+                            <input type="text" class="form-control" name="price">
+                            <small class="text-danger"><?php echo $priceError; ?></small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Quantity:</label>
+                            <input type="text" class="form-control" name="quantity">
+                            <small class="text-danger"><?php echo $quantityError; ?></small>
+                        </div>
+                    </div>
+                    
+                    <label>Upload image:</label>
+                    <div class="custom-file mb-4">
+                        <input type="file" class="custom-file-input" id="customFile" name="image">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <small class="text-danger"><?php echo $imgError; ?></small>
+                    </div>
 
-            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-        </form>
+
+                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
 
         <br>
         

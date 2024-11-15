@@ -28,7 +28,7 @@
     <body>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6 offset-md-3  p-4 shadow-sm rounded border">
+            <div class="col-md-6 offset-md-3 p-4 shadow-sm rounded border">
                 <h2 class="text-center pb-5">Create Account</h2>
                 <?php if(!empty($errors)): ?>
                     <div class="alert alert-danger">
