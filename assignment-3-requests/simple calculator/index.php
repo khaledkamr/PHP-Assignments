@@ -7,10 +7,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
-
-    <h2 class="text-center m-5">Simple calculator</h2>
-
-    <form action="index.php" method="post">
+    <form action="index.php" method="post" class="p-4 shadow-sm rounded border">
+        <h2 class="text-center mb-5">Simple calculator</h2>
         <div class="form-group">
             <input type="number" name="num1" class="form-control" placeholder="Enter first number" required>
         </div>
@@ -24,7 +22,7 @@
                 <option value="multi">*</option>
                 <option value="div">/</option>
             </select>
-            <button type="submit" name="submit" class="btn btn-primary ml-5">Calculate</button>
+            <button type="submit" name="submit" class="btn btn-primary ml-3">Calculate</button>
         </div>
         
     </form>
@@ -57,14 +55,13 @@
             }
 
             if(is_numeric($result)) {
-                echo "<h3 class='alert alert-info'>Result: $result</h3>";
+                echo "<h3 class='alert alert-info mt-5'>Result: $result</h3>";
             } else {
-                echo "<h3 class='alert alert-danger'>Result: $result</h3>";
+                echo "<h3 class='alert alert-danger mt-5'>Result: $result</h3>";
             }
         }
     ?>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
