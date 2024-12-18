@@ -1,14 +1,11 @@
-
 <?php
+
 include "header.php";
 include "navbar.php";
 include "dbConnection.php";
 ?>
 
-
 <div class="card-body px-5 py-5" style="background-color:darkgray;">
-
-
 
                 <h3 class="card-title text-left mb-3">Register</h3>
                 <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
@@ -16,19 +13,22 @@ include "dbConnection.php";
                     <label>Username</label>
                     <input type="text" class="form-control p_input" name="UserName" value="">
                   </div>
+                  
                   <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control p_input" name="email">
                   </div>
+
                   <div class="form-group">
                     <label>Password</label>
                     <input type="password" class="form-control p_input" name="password">
-
                   </div>
+
                   <div class="form-group">
                     <label>Phone</label>
                     <input type="text" class="form-control p_input"name="phone">
                   </div>
+
                   <div class="form-group">
                     <label>Address</label>
                     <input type="text" class="form-control p_input" name="address">
