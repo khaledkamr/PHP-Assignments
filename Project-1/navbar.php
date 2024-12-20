@@ -49,7 +49,7 @@
 
 
         <li class="link">
-            <a id="lg-cart" href="cart.html">
+            <a id="lg-cart" href="cart.php">
                 <i class="fas fa-shopping-cart"></i> 
             </a>
         </li>
