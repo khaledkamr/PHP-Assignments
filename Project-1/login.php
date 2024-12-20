@@ -6,20 +6,27 @@ include "dbConnection.php";
 
 <div class="card-body px-5 py-5" style="background-color:darkgray;">
 
-
+<?php if(isset($_SESSION["success"])): ?>
+<div class="alert alert-info" role="alert">
+  <?php echo $_SESSION["success"] ?>
+</div>
+<?php endif ?>
 
             
               
                 <h3 class="card-title text-left mb-3">Login</h3>
-                <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+                <form action="loginHandle.php" method="post">
+
                   <div class="form-group">
                     <label>email *</label>
                     <input type="email" name="email" class="form-control p_input" >
                   </div>
+
                   <div class="form-group">
                     <label>Password *</label>
                     <input type="text" name="password" class="form-control p_input" >
                   </div>
+
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
                       <label class="form-check-label">
@@ -27,9 +34,11 @@ include "dbConnection.php";
                     </div>
                     <a href="forgetPassword.php" class="forgot-pass">Forgot password</a>
                   </div>
+
                   <div class="text-center">
                     <button type="submit" name="login" class="btn btn-primary btn-block enter-btn">Login</button>
                   </div>
+                  
                   <div class="d-flex">
                     <button class="btn btn-facebook me-2 col">
                       <i class="mdi mdi-facebook"></i> Facebook </button>
@@ -48,7 +57,10 @@ include "dbConnection.php";
       <!-- page-body-wrapper ends -->
     </div>
 
-    <?php include "footer.php" ?>
+    <?php 
+    include "footer.php" ;
+    unset($_SESSION["success"]);
+    ?>
 
 
     //table user, product, cart ,, review comment , rating  = session
