@@ -7,7 +7,7 @@
     </section>
  
     <section id="cart" class="section-p1">
-        <table width="100%">
+        <table width="100%" class="border">
             <thead>
                 <tr>
                     <td>Image</td>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
    
-            <tbody>
+            <tbody class="p-5">
                 <tr>
                     <td><img src="" alt="product1"></td>
                     <td></td>
@@ -29,24 +29,17 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                   
-                    
-                    <td></td>
-                    
-                    <!-- Remove any cart item  -->
                     <td><button type="submit"  class="btn btn-danger">Remove</button></td>
-                    
-                    
-                
+                    <td><button type="submit"  class="btn btn-primary">Edit</button></td>
                 </tr>
             </tbody>
             <!-- confirm order  -->
-            <td><button type="submit" name="" class="btn btn-success">Confirm</button></td>
+            <!-- <td><button type="submit" name="" class="btn btn-success mt-5">Confirm</button></td> -->
             
         </table>
     </section>
 
-    <!-- <section id="cart-add" class="section-p1">
+    <section id="cart-add" class="section-p1">
         <div id="coupon">
             <h3>Coupon</h3>
             <input type="text" placeholder="Enter coupon code">
@@ -74,7 +67,7 @@
             </table>
             <button class="normal">proceed to checkout</button>
         </div>
-    </section> -->
+    </section>
 
     <?php include "footer.php" ?>
 

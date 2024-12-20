@@ -1,8 +1,15 @@
 
 <?php include 'header.php' ?>
 <?php include 'navbar.php' ;
-include "dbConnection.php";?>
+include "dbConnection.php";
 
+if(isset($_SESSION["success"])): ?>
+<div class="container pt-5 d-flex justify-content-center">
+    <div class="alert alert-info col-3 d-flex justify-content-center" role="alert">
+      <?php echo $_SESSION["success"] ?>
+    </div>
+</div>
+<?php endif ?>
 
     <section id="product1" class="section-p1">
         <h2>Featured Products</h2>
@@ -10,17 +17,17 @@ include "dbConnection.php";?>
         <div class="pro-container">
 
         <?php 
-        $selectProducts ="select * from `products`";
-        $runSelectProducts=mysqli_query($conn,$selectProducts);
-        $resultProducts=mysqli_fetch_all($runSelectProducts,MYSQLI_ASSOC);
+        $query = "select * from product";
+        $res = mysqli_query($conn, $query);
+        $Products = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
-        if(count($resultProducts)>0)
+        if(count($Products) > 0)
         {
-            foreach($resultProducts as $product)
+            foreach($Products as $product)
             { ?>
                 <div class="pro">
                 <!-- <form> -->
-                <img src="admin/upload/<?php echo $product['image'] ;?>" alt="p1" />
+                <img src="img/products/<?php echo $product['image'] ?>" alt="" />
                     <div class="des">
                     <h2><?php echo $product['name']; ?></h2>
                         <h5><?php echo $product['description']; ?></h5>
@@ -34,17 +41,12 @@ include "dbConnection.php";?>
                         <h4><?php echo $product['price']; ?></h4>
                         <input type="number" name="quantity">
                         <button type="submit"><a class="cart "><i class="fas fa-shopping-cart "></i></a></button>
-                         
                     </div>
                     </div>
-
             <?php }
         }
         ?>
-                        
-              
             </div>
-           
         </div>
     </section>
     
@@ -84,4 +86,7 @@ include "dbConnection.php";?>
     </section>
 
 
-    <?php include 'footer.php' ?>
+    <?php 
+    include 'footer.php' ;
+    unset($_SESSION["success"]);
+    ?>
