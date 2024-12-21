@@ -26,23 +26,35 @@ if(isset($_SESSION["success"])): ?>
             foreach($Products as $product)
             { ?>
                 <div class="pro">
-                <!-- <form> -->
-                <img src="img/products/<?php echo $product['image'] ?>" alt="" />
+                  <form action="cartHandle.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $product["product_id"] ?>">
+                    <img src="img/products/<?php echo $product['image'] ?>" alt="" />
                     <div class="des">
-                    <h2><?php echo $product['name']; ?></h2>
-                        <h5><?php echo $product['description']; ?></h5>
-                        <div class="star ">
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star "></i>
-                        </div>
-                        <h4><?php echo $product['price']; ?></h4>
-                        <input type="number" name="quantity">
-                        <button type="submit"><a class="cart "><i class="fas fa-shopping-cart "></i></a></button>
+                      <h3><?php echo $product['name']; ?></h3>
+                      <h5><?php echo $product['description']; ?></h5>
+                      <div class="star ">
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                      </div>
+                      <h4><?php echo $product['price']; ?></h4>
+                      <label>quantity</label><br>
+                      <input type="number" name="quantity">
+                      <button type="submit" name="addToCart">
+                        <a class="cart "><i class="fas fa-shopping-cart "></i></a>
+                      </button>
                     </div>
-                    </div>
+
+                    <?php if(isset($_SESSION["success_cart"]) && $_GET["id"] == $product["product_id"]): ?>
+                      <div class="alert alert-info" role="alert">
+                        <?php echo $_SESSION["success_cart"] ?>
+                      </div>
+                    <?php endif ?>
+                    
+                  </form>
+                </div>
             <?php }
         }
         ?>
@@ -52,7 +64,7 @@ if(isset($_SESSION["success"])): ?>
     
 
 
-    <section id="pagenation" class="section-p1">
+    <section id="pagenation" class="section-p1 d-flex justify-content-center">
     <nav aria-label="Page navigation example" >
   <ul class="pagination">
     <li class="page-item">
@@ -89,4 +101,5 @@ if(isset($_SESSION["success"])): ?>
     <?php 
     include 'footer.php' ;
     unset($_SESSION["success"]);
+    unset($_SESSION["success_cart"]);
     ?>
