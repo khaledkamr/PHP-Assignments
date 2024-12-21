@@ -1,5 +1,23 @@
-<?php include 'header.php' ?>
-<?php include 'navbar.php' ?>
+<?php 
+include 'header.php';
+include 'navbar.php';
+include 'dbConnection.php' ;
+
+$query = "SELECT product.image, product.name, product.description, cart.quantity, product.price
+  FROM cart JOIN product ON cart.product_id=product.product_id";
+$res = mysqli_query($conn, $query);
+if(mysqli_num_rows($res) > 0) {
+    $items = mysqli_fetch_all($res, MYSQLI_ASSOC);
+}
+$i = 0;
+
+$query = "SELECT SUM(product.price * cart.quantity) AS TOTAL
+    FROM cart JOIN product ON product.product_id = cart.product_id";
+$res = mysqli_query($conn, $query);
+if(mysqli_num_rows($res) == 1) {
+    $total = mysqli_fetch_assoc($res);
+}
+?>
 
 <section id="page-header" class="about-header"> 
         <h2>#Cart</h2>
@@ -22,16 +40,18 @@
             </thead>
    
             <tbody class="p-5">
+                <?php foreach($items as $item): ?>
                 <tr>
-                    <td><img src="" alt="product1"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit"  class="btn btn-danger">Remove</button></td>
+                    <td><img src="img/products/<?php echo $item["image"] ?>" alt="product <?php echo ++$i ?>"></td>
+                    <td><?php echo $item["name"] ?></td>
+                    <td><?php echo $item["description"] ?></td>
+                    <td><?php echo $item["quantity"] ?></td>
+                    <td><?php echo $item["price"] . "$" ?></td>
+                    <td><?php echo $item["quantity"] * $item["price"] . "$" ?></td>
+                    <td class="pb-3"><button type="submit"  class="btn btn-danger">Remove</button></td>
                     <td><button type="submit"  class="btn btn-primary">Edit</button></td>
                 </tr>
+                <?php endforeach ?>
             </tbody>
             <!-- confirm order  -->
             <!-- <td><button type="submit" name="" class="btn btn-success mt-5">Confirm</button></td> -->
@@ -50,19 +70,19 @@
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$118.25</td>
+                    <td><?php echo $total["TOTAL"] . "$" ?></td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
-                    <td>$0.00</td>
+                    <td>25.00$</td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>$0.00</td>
+                    <td>10.00$</td>
                 </tr>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>$118.25</strong></td>
+                    <td><strong><?php echo ($total["TOTAL"] + 25.0 + 10.0) . "$" ?></strong></td>
                 </tr>
             </table>
             <button class="normal">proceed to checkout</button>
