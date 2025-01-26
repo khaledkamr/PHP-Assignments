@@ -7,9 +7,9 @@ Welcome to my PHP Assignments repository! This collection showcases my journey t
 The assignments cover a range of topics, including:
 - Basics of PHP syntax and structure
 - Form handling and data validation
-- ~~Working with databases~~
-- ~~Sessions and cookies~~
-- ~~Object-oriented programming in PHP~~
+- Working with databases
+- Sessions and cookies
+- Object-oriented programming in PHP
 
 ## About This Repository
 
