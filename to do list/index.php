@@ -1,6 +1,7 @@
 <?php 
 require_once 'inc/header.php';
 require_once "inc/connection.php";
+require_once "App.php";
 ?>
 <body>
     
@@ -8,11 +9,21 @@ require_once "inc/connection.php";
         <div class="row d-flex justify-content-center">
             <div class="container mb-5 d-flex justify-content-center">
                 <div class="col-md-4">
+                    <?php
+                        if($ses->get("errors")) { 
+                            foreach($ses->get("errors") as $error) {
+                            ?>
+                            <div class="alert alert-danger"><?php echo $error ?></div>
+                        <?php
+                            }
+                        }
+                        $ses->remove("errors");
+                    ?>
                     <form action="handle/addToDo.php" method="post">
-                    <textarea type="text" class="form-control" rows="3" name="title" id="" placeholder="enter your note here"></textarea>
-                    <div class="text-center">
-                        <button type="submit" name="submit" class="form-control text-white bg-info mt-3 " >Add To Do</button>
-                    </div>
+                        <textarea type="text" class="form-control" rows="3" name="title" id="" placeholder="enter your note here"></textarea>
+                        <div class="text-center">
+                            <button type="submit" name="submit" class="form-control text-white bg-info mt-3 " >Add To Do</button>
+                        </div>
                     </form>
                 </div>
             </div>
