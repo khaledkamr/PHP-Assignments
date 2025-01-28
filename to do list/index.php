@@ -46,7 +46,7 @@ require_once "App.php";
                                     <h5><?php echo $note["created_at"] ?></h5>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="edit.php?id=<?php echo $note["id"] ?>"class="btn btn-info p-1 text-white" >edit</a>
-                                        <a href="#"class="btn btn-info p-1 text-white">doing</a>
+                                        <a href="handle/goto.php?status=doing&id=<?php echo $note["id"] ?>"class="btn btn-info p-1 text-white">doing</a>
                                     </div>
                                 </div>
                                 <?php
@@ -81,7 +81,7 @@ require_once "App.php";
                                     <h5><?php echo $note["created_at"] ?></h5>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a></a>
-                                        <a href="#"class="btn btn-success p-1 text-white">Done</a>
+                                        <a href="handle/goto.php?status=done&id=<?php echo $note["id"] ?>"class="btn btn-success p-1 text-white">Done</a>
                                     </div>
                                 </div>
                                 <?php
@@ -91,7 +91,7 @@ require_once "App.php";
                                 ?>
                                 <div class="item">
                                     <div class="alert-success text-center">
-                                        empty to do
+                                        empty
                                     </div>
                                 </div>
                                 <?php
@@ -124,7 +124,7 @@ require_once "App.php";
                             ?>
                             <div class="item">
                                 <div class="alert-warning text-center">
-                                    empty to do
+                                    empty
                                 </div>
                             </div>
                             <?php
