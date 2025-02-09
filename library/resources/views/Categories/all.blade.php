@@ -36,6 +36,16 @@
             <div class="card p-3 text-light">
                 <h5>{{$loop->iteration}}. <a href="{{url("categories/show/$cat->id")}}">{{$cat->name}}</a></h5>
                 <p>{{$cat->desc}}</p>
+                <div class="d-flex">
+                    <a class="me-2" href={{url("categories/edit/$cat->id")}}>
+                        <button class="btn btn-primary">edit</button>
+                    </a>
+                    <form action={{url("categories/$cat->id")}} method="post">
+                        @csrf
+                        @method("DELETE")
+                        <button class="btn btn-danger" type="submit">delete</button>
+                    </form>
+                </div>
             </div>
         @endforeach
     </div>

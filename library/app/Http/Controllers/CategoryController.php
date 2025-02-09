@@ -32,4 +32,29 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view("Categories.all", ["categories" => $categories]);
     }
+
+    public function edit($id) {
+        $category = Category::findOrFail($id);
+        return view("Categories.edit")->with("category", $category);
+    }
+
+    public function update($id, Request $request) {
+        $data = $request->validate([
+            "name" => "required|string|max:200",
+            "desc" => "required|string"
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update($data);
+
+        return view("Categories.show", compact("category"));
+    }
+
+    public function delete($id) {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        $categories = Category::all();
+        return view("Categories.all", ["categories" => $categories]);
+    }
 }

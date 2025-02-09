@@ -29,6 +29,7 @@
         <div class="card text-light">
             <h2>{{$category->name}}</h2>
             <p>{{$category->desc}}</p>
+            <a href={{url("categories/edit/$category->id")}}>edit</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
