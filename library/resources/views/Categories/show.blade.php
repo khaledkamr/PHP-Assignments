@@ -29,7 +29,16 @@
         <div class="card text-light">
             <h2>{{$category->name}}</h2>
             <p>{{$category->desc}}</p>
-            <a href={{url("categories/edit/$category->id")}}>edit</a>
+            <div class="d-flex justify-content-center">
+                <a class="me-2" href={{url("categories/edit/$category->id")}}>
+                    <button class="btn btn-primary">edit</button>
+                </a>
+                <form action={{url("categories/$category->id")}} method="post">
+                    @csrf
+                    @method("DELETE")
+                    <button class="btn btn-danger" type="submit">delete</button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
