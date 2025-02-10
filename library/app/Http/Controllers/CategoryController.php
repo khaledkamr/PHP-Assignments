@@ -28,8 +28,9 @@ class CategoryController extends Controller
         ]);
 
         category::create($data);
-
         $categories = Category::all();
+        session()->flash("success", "data inserted successfully");
+
         return view("Categories.all", ["categories" => $categories]);
     }
 
@@ -46,6 +47,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
         $category->update($data);
+        session()->flash("success", "data updated successfully");
 
         return view("Categories.show", compact("category"));
     }
@@ -55,6 +57,8 @@ class CategoryController extends Controller
         $category->delete();
 
         $categories = Category::all();
+
+        session()->flash("success", "data deleted successfully");
         return view("Categories.all", ["categories" => $categories]);
     }
 }
