@@ -49,7 +49,7 @@
                 <h4>Add Category</h4>
             </div>
             <div class="card-body">
-                <form action={{url("categories")}} method="POST">
+                <form action={{route("storeCategory")}} method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="categoryName" class="form-label text-light">Category Name</label>

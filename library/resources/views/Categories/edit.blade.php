@@ -49,7 +49,7 @@
                 <h4>Edit Category</h4>
             </div>
             <div class="card-body">
-                <form action={{url("categories/update/$category->id")}} method="POST">
+                <form action={{route("updateCategory", $category->id)}} method="POST">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">

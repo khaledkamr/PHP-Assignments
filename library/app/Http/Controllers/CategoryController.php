@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function all() {
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         return view("Categories.all", compact("categories"));
     }
 
@@ -26,12 +26,9 @@ class CategoryController extends Controller
             "name" => "required|string|max:255",
             "desc" => "required|string"
         ]);
-
         category::create($data);
-        $categories = Category::all();
         session()->flash("success", "data inserted successfully");
-
-        return view("Categories.all", ["categories" => $categories]);
+        return redirect((route("allCategories")));
     }
 
     public function edit($id) {
@@ -44,21 +41,16 @@ class CategoryController extends Controller
             "name" => "required|string|max:200",
             "desc" => "required|string"
         ]);
-
         $category = Category::findOrFail($id);
         $category->update($data);
         session()->flash("success", "data updated successfully");
-
-        return view("Categories.show", compact("category"));
+        return redirect(route("showCategory", $id));
     }
 
     public function delete($id) {
         $category = Category::findOrFail($id);
         $category->delete();
-
-        $categories = Category::all();
-
         session()->flash("success", "data deleted successfully");
-        return view("Categories.all", ["categories" => $categories]);
+        return redirect(route("allCategories"));
     }
 }

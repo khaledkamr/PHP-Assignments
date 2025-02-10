@@ -30,10 +30,10 @@
             <h2>{{$category->name}}</h2>
             <p>{{$category->desc}}</p>
             <div class="d-flex justify-content-center">
-                <a class="me-2" href={{url("categories/edit/$category->id")}}>
+                <a class="me-2" href={{route("editCategory", $category->id)}}>
                     <button class="btn btn-primary">edit</button>
                 </a>
-                <form action={{url("categories/$category->id")}} method="post">
+                <form action={{route("deleteCategory", $category->id)}} method="post">
                     @csrf
                     @method("DELETE")
                     <button class="btn btn-danger" type="submit">delete</button>
