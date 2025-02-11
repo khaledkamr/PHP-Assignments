@@ -29,6 +29,7 @@
         <div class="card text-light">
             <h2>{{$category->name}}</h2>
             <p>{{$category->desc}}</p>
+            <img src="{{asset("storage/$category->image")}}" width=200px class="m-auto mb-3" alt="">
             <div class="d-flex justify-content-center">
                 <a class="me-2" href={{route("editCategory", $category->id)}}>
                     <button class="btn btn-primary">edit</button>

@@ -49,17 +49,25 @@
                 <h4>Edit Category</h4>
             </div>
             <div class="card-body">
-                <form action={{route("updateCategory", $category->id)}} method="POST">
+                <form action={{route("updateCategory", $category->id)}} method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="mb-3">
                         <label for="categoryName" class="form-label text-light">Category Name</label>
                         <input type="text" class="form-control" id="categoryName" name="name" value="{{$category->name}}">
                     </div>
+
                     <div class="mb-3">
                         <label for="categoryDescription" class="form-label text-light">Category Description</label>
                         <textarea class="form-control" id="categoryDescription" name="desc" rows="3">{{$category->desc}}</textarea>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="categoryImage" class="form-label text-light">Category Image</label>
+                        <input type="file" class="form-control" id="categoryImage" name="image">
+                        <img src="{{asset("storage/$category->image")}}" width=200px class="m-auto mt-3" alt="">
+                    </div>
+
                     <button type="submit" class="btn btn-success">Update</button>
                 </form>
             </div>

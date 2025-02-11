@@ -49,16 +49,23 @@
                 <h4>Add Category</h4>
             </div>
             <div class="card-body">
-                <form action={{route("storeCategory")}} method="POST">
+                <form action={{route("storeCategory")}} method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="categoryName" class="form-label text-light">Category Name</label>
                         <input type="text" class="form-control" id="categoryName" name="name">
                     </div>
+
                     <div class="mb-3">
                         <label for="categoryDescription" class="form-label text-light">Category Description</label>
                         <textarea class="form-control" id="categoryDescription" name="desc" rows="3"></textarea>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="categoryImage" class="form-label text-light">Category Image</label>
+                        <input type="file" class="form-control" id="categoryImage" name="image">
+                    </div>
+
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
