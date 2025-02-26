@@ -10,14 +10,19 @@
 <body>
     <nav>
         <ul>
-            <li><a href="{{route('registerForm')}}">Register</a></li>
-            <li><a href="{{route('loginForm')}}">login</a></li>
-            <li>
-                <form action="{{route('logout')}}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">logout</button>
-                </form>
-            </li>
+            @guest
+                
+                <li><a href="{{route('registerForm')}}">Register</a></li>
+                <li><a href="{{route('loginForm')}}">login</a></li>
+            @endguest
+            @auth
+                <li>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">logout</button>
+                    </form>
+                </li>
+            @endauth
         </ul>
     </nav>
     @yield("content")

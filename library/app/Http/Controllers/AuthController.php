@@ -52,4 +52,9 @@ class AuthController extends Controller
         Auth::logout();
         return redirect(route('loginForm'));
     }
+
+    public function allUsers() {
+        $users = User::all();
+        dd($users);
+    }
 }
