@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,8 @@ class AuthController extends Controller
 {
     public function redirect() {
         if(Auth::user()->role == 'admin') {
-            return view('admin.home');
+            $products = Product::paginate(9);
+            return view('admin.home', compact('products'));
         }
         else {
             return view('user.home');

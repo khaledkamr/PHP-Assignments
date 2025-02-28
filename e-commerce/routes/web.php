@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,3 +20,7 @@ Route::middleware([
 
 
 Route::get('redirect', [AuthController::class, 'redirect'])->name('redirect');
+
+Route::controller(ProductController::class)->group(function() {
+    Route::get('products', 'all')->name('allProducts');
+});
