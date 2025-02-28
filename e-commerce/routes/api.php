@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::controller(ApiProductController::class)->group(function() {
-    Route::get('products', 'all')->name('allProducts');
-    Route::get('products/{id}', 'show')->name('showProduct');
-    Route::get('products/create', 'create')->name('createProduct');
-    Route::post('products', 'store')->name('storeProduct');
-    Route::delete('product/{id}', 'delete')->name('deleteProduct');
-    Route::get('products/edit/{id}', 'edit')->name('editProduct');
-    Route::put('products/update/{id}', 'update')->name('updateProduct');
+    Route::get('products', 'all');
+    Route::get('products/{id}', 'show');
+    Route::post('products', 'store');
+    Route::delete('product/{id}', 'delete');
+    Route::put('products/update/{id}', 'update');
 });
