@@ -1,1 +1,1 @@
-<h1>admin side</h1>
+@extends('admin.layout')
