@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
             'name' => 'oppo',
             'desc' => 'latest version',
             'price' => 100,
-            'image' => 'products/2.png',
+            'image' => 'products/2.jpg',
             'quantity' => 5
         ]);
         Product::create([
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
             'name' => 'samsung',
             'desc' => 'latest version',
             'price' => 150,
-            'image' => 'products/3.png',
+            'image' => 'products/3.jpg',
             'quantity' => 6
         ]);
     }
