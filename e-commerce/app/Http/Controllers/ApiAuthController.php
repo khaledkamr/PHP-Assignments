@@ -76,4 +76,30 @@ class ApiAuthController extends Controller
             ], 404);
         }
     }
+
+    public function logout(Request $request) {
+        $access_token = $request->header("access_token");
+        if($access_token != null) {
+
+            $user = User::where("access_token", $access_token)->first();
+            if($user) {
+                $user->update([
+                    "access_token" => null
+                ]);
+                return response()->json([
+                    "msg" => "logged out successfully!",
+                ], 200);
+            } 
+            else {
+                return response()->json([
+                    "msg" => "access_token not correct",
+                ], 404);
+            }
+        } 
+        else {
+            return response()->json([
+                "msg" => "access_token not found",
+            ], 404);
+        }
+    }
 }
