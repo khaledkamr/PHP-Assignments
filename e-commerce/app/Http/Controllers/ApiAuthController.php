@@ -80,7 +80,6 @@ class ApiAuthController extends Controller
     public function logout(Request $request) {
         $access_token = $request->header("access_token");
         if($access_token != null) {
-
             $user = User::where("access_token", $access_token)->first();
             if($user) {
                 $user->update([

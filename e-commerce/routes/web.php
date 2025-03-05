@@ -31,3 +31,12 @@ Route::controller(ProductController::class)->group(function() {
         Route::put('products/update/{id}', 'update')->name('updateProduct');
     });
 });
+
+Route::get('change/{lang}', function($lang) {
+    if($lang == 'en') {
+        session()->put('lang', 'en');
+    } else {
+        session()->put('lang', 'ar');
+    }
+    return redirect()->back();
+});

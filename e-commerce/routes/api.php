@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::controller(ApiProductController::class)->group(function() {
-    Route::get('products', 'all');
-    Route::get('products/{id}', 'show');
-    Route::post('products', 'store');
-    Route::delete('product/{id}', 'delete');
-    Route::put('products/update/{id}', 'update');
+    Route::middleware("apiAuth")->group(function() {
+        Route::get('products', 'all');
+        Route::get('products/{id}', 'show');
+        Route::post('products', 'store');
+        Route::delete('product/{id}', 'delete');
+        Route::put('products/update/{id}', 'update');
+    });
+
 });
 
 Route::controller((ApiAuthController::class))->group(function() {

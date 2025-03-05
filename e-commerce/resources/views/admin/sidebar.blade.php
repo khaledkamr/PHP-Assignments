@@ -5,7 +5,7 @@
     </div>
     <ul class="nav">
       <li class="nav-item profile">
-        <a href="{{url('dashboard')}}" class="nav-link btn w-50 btn-success create-new-button">Profile</a>
+        <a href="{{url('dashboard')}}" class="nav-link btn w-50 btn-success create-new-button">{{trans('message.profile')}}</a>
       </li>
       <li class="nav-item nav-category">
         <span class="nav-link">Navigation</span>
@@ -15,7 +15,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">{{__('message.dashboard')}}</span>
         </a>
       </li>
       <li class="nav-item menu-items">
@@ -23,7 +23,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-playlist-play"></i>
           </span>
-          <span class="menu-title">Add new product</span>
+          <span class="menu-title">@lang('message.add new product')</span>
         </a>
       </li>
     </ul>

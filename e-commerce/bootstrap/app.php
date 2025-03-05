@@ -14,7 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             "isAdmin" => App\Http\Middleware\IsAdmin::class,
+            "apiAuth" => App\Http\Middleware\ApiAuth::class,
         ]);
+        $middleware->web(
+            append:[
+                App\Http\Middleware\ChangeLang::class,
+            ]
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -14,6 +14,12 @@
         </li>
       </ul>
       <ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item dropdown d-none d-lg-block p-3">
+          <a href="{{url("change/en")}}" class="btn btn-primary">English</a>
+        </li>
+        <li class="nav-item dropdown d-none d-lg-block p-3">
+          <a href="{{url("change/ar")}}" class="btn btn-primary">العربية</a>
+        </li>
         <li class="nav-item dropdown d-none d-lg-block">
           <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
