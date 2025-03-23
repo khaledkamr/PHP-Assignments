@@ -14,7 +14,9 @@ class AuthController extends Controller
             return view('admin.home', compact('products'));
         }
         else {
-            return view('user.home');
+            $products = Product::all();
+            $cart = session()->get('cart');
+            return view('user.home', compact('products', 'cart'));
         }
     }
 }

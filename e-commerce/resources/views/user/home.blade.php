@@ -1,1 +1,7 @@
-<h1>user side</h1>
+@extends('user.app.layout')
+
+@section('content')
+
+    @include('user.app.body')
+
+@endsection
