@@ -63,6 +63,41 @@ class ProductController extends Controller
         return view('user.products.cart', compact('cart'));
     }
 
+    public function updateCart(Request $request, $id) {
+        $cart = session()->get('cart');
+        $product = Product::findOrFail($id);
+        
+        if(isset($cart[$id])) {
+            $cart[$id]['qty'] = $request->qty;
+            $cart[$id]['price'] = $product->price * $request->qty;
+            
+            if($cart[$id]['qty'] <= 0) {
+                unset($cart[$id]);
+            }
+            
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Cart updated successfully!');
+        }
+        return redirect()->back()->with('error', 'Product not found in cart!');
+    }
+
+    public function removeFromCart($id)
+    {
+        $cart = session()->get('cart');
+        if(isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product removed from cart successfully!');
+        }
+        return redirect()->back()->with('error', 'Product not found in cart!');
+    }
+
+    public function clearCart()
+    {
+        session()->forget('cart');
+        return redirect()->back()->with('success', 'Cart cleared successfully!');
+    }
+
     public function makeOrder(Request $request) {
         $cart = session()->get('cart');
         $user_id = auth()->user()->id;

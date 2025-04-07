@@ -41,6 +41,9 @@ Route::controller(UserProductController::class)->group(function() {
     Route::middleware('auth')->group(function() {
         Route::post('products/addToCart/{id}', 'addToCart')->name('addToCart');
         Route::get('products/Cart', 'showCart')->name('showCart');
+        Route::post('products/updateCart/{id}', 'updateCart')->name('updateCart');
+        Route::get('products/removeFromCart/{id}', 'removeFromCart')->name('removeFromCart');
+        Route::get('products/clearCart', 'clearCart')->name('clearCart');
         Route::post('products/makeOrder', 'makeOrder')->name('makeOrder');
     });
     
