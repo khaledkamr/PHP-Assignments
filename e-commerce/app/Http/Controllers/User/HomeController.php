@@ -13,25 +13,11 @@ class HomeController extends Controller
         return view('user.home', compact('products'));
     }
 
-    public function addToWishlist(Request $request, $id) {
+    public function addToWishlist($id) {
         $product = Product::findOrFail($id);
-        $wishlist = session()->get('wishlist');
-
-        if(!$wishlist) {
-            $wishlist = [
-                $id => [
-                    "name" => $product->name,
-                    "price" => $product->price,
-                    "image" => $product->image
-                ]
-            ];
-            session()->put('wishlist', $wishlist);
-            return redirect()->back()->with('success', 'Product added to wishlist successfully!');
-        } 
-        else {
-            if(isset($wishlist[$id])) {
-                return redirect()->back()->with('error', 'Product already in wishlist!');
-            }
+        $wishlist = session()->get('wishlist', []);
+        
+        if(!isset($wishlist[$id])) {
             $wishlist[$id] = [
                 "name" => $product->name,
                 "price" => $product->price,
@@ -40,10 +26,26 @@ class HomeController extends Controller
             session()->put('wishlist', $wishlist);
             return redirect()->back()->with('success', 'Product added to wishlist successfully!');
         }
+        return redirect()->back()->with('error', 'Product already in wishlist!');
+    }
+
+    public function removeFromWishlist($id) {
+        $wishlist = session()->get('wishlist', []);
+        if(isset($wishlist[$id])) {
+            unset($wishlist[$id]);
+            session()->put('wishlist', $wishlist);
+            return redirect()->back()->with('success', 'Product removed from wishlist successfully!');
+        }
+        return redirect()->back()->with('error', 'Product not found in wishlist!');
+    }
+
+    public function clearWishlist() {
+        session()->forget('wishlist');
+        return redirect()->back()->with('success', 'Wishlist cleared successfully!');
     }
 
     public function wishlist() {
-        $wishlist = session()->get('wishlist');
+        $wishlist = session()->get('wishlist', []);
         return view('user.products.wishlist', compact('wishlist'));
     }
 }

@@ -23,10 +23,21 @@
                           <li><i class="fa fa-star"></i></li>
                       </ul>
                       <span>{{$product->quantity}}</span>
-                      <form action="{{route("addToWishlist", $product->id)}}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-secondary mt-2">Add to Wishlist</button>
-                      </form>
+                      @php
+                        $wishlist = session()->get('wishlist', []);
+                        $isInWishlist = isset($wishlist[$product->id]);
+                      @endphp
+                      @if($isInWishlist)
+                        <form action="{{route('removeFromWishlist', $product->id)}}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-danger mt-2">Remove from Wishlist</button>
+                        </form>
+                      @else
+                        <form action="{{route('addToWishlist', $product->id)}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary mt-2">Add to Wishlist</button>
+                        </form>
+                      @endif
                     </div>
                 </div>
             </div>

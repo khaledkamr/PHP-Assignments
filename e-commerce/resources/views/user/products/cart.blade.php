@@ -62,7 +62,7 @@
         </div>
     @else
         <div class="alert alert-warning text-center mt-5" role="alert">
-            <p class="mb-0">Your cart is empty.</p>
+            Your cart is empty.
         </div>
     @endif
 </div>

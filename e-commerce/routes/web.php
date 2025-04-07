@@ -52,6 +52,8 @@ Route::controller(UserProductController::class)->group(function() {
 Route::controller(HomeController::class)->group(function() {
     Route::get('home', 'all')->name('home');
     Route::post('products/addToWishlist/{id}', 'addToWishlist')->name('addToWishlist');
+    Route::get('products/removeFromWishlist/{id}', 'removeFromWishlist')->name('removeFromWishlist');
+    Route::get('products/clearWishlist', 'clearWishlist')->name('clearWishlist');
     Route::get('products/wishlist', 'wishlist')->name('wishlist');
 });
 
