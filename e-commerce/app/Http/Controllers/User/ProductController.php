@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -29,7 +32,7 @@ class ProductController extends Controller
                 $id => [
                     "name" => $product->name,
                     "qty" => $qty,
-                    "price" => $product->price,
+                    "price" => $product->price * $qty,
                     "image" => $product->image
                 ]
             ];
@@ -39,13 +42,14 @@ class ProductController extends Controller
         else {
             if(isset($cart[$id])) {
                 $cart[$id]['qty'] += $qty;
+                $cart[$id]['price'] = $product->price * $cart[$id]['qty'];
                 session()->put('cart', $cart);
                 return redirect()->back()->with('success', 'Product added to cart successfully!');
             }
             $cart[$id] = [
                 "name" => $product->name,
                 "qty" => $qty,
-                "price" => $product->price,
+                "price" => $product->price * $qty,
                 "image" => $product->image
             ];
             session()->put('cart', $cart);
@@ -56,7 +60,28 @@ class ProductController extends Controller
 
     public function showCart() {
         $cart = session()->get('cart');
-        // dd($cart);
         return view('user.products.cart', compact('cart'));
     }
+
+    public function makeOrder(Request $request) {
+        $cart = session()->get('cart');
+        $user_id = auth()->user()->id;
+        $order = Order::create([
+            'user_id' => $user_id,
+            'requiredDate' => $request->requiredDate
+        ]);
+
+        foreach($cart as $id => $product) {
+            OrderDetails::create([
+                'order_id' => $order->id,
+                'product_id' => $id,
+                'quantity' => $product['qty'],
+                'price' => $product['price']
+            ]);
+        }
+
+        session()->forget('cart');
+        return redirect()->back()->with('success', 'Order created successfully!');
+    }
+
 }

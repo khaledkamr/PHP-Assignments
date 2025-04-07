@@ -12,17 +12,21 @@
                 <div class="product-item">
                     <a href="{{route('showProduct', $product->id)}}"><img src="{{asset("storage/$product->image")}}" alt=""></a>
                     <div class="down-content">
-                    <a href="#"><h4>{{$product->name}}</h4></a>
-                    <h6>${{$product->price}}</h6>
-                    <p>{{$product->desc}}</p>
-                    <ul class="stars">
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                    </ul>
-                    <span>{{$product->quantity}}</span>
+                      <a href="#"><h4>{{$product->name}}</h4></a>
+                      <h6>${{$product->price}}</h6>
+                      <p>{{$product->desc}}</p>
+                      <ul class="stars">
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      <span>{{$product->quantity}}</span>
+                      <form action="{{route("addToWishlist", $product->id)}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary mt-2">Add to Wishlist</button>
+                      </form>
                     </div>
                 </div>
             </div>

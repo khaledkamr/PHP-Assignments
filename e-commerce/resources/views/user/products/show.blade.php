@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container w-70">
+<div class="container w-70 pt-5 mt-5">
     <div class="col-md-4">
         <div class="product-item">
             <a href=""><img src="{{asset("storage/$product->image")}}" alt=""></a>
@@ -21,7 +21,7 @@
             <form action="{{route("addToCart", $product->id)}}" method="POST">
                 @csrf
                 <input type="number" name="qty" id="">
-                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                <button type="submit" class="btn btn-primary mt-2">Add to Cart</button>
             </form>
             </div>
         </div>

@@ -7,23 +7,28 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{route('allProducts')}}">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li> 
-          <li class="nav-item">
-            <a class="nav-link" href="{{asset("products.html")}}">Our Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('showCart')}}">My Cart</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{asset("about.html")}}">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{asset("contact.html")}}">Contact Us</a>
-          </li>
+            <li class="nav-item {{ request()->routeIs('allProducts') ? 'active' : '' }}">
+              <a class="nav-link" href="{{route('allProducts')}}">Home
+                @if(request()->routeIs('allProducts'))
+                  <span class="sr-only">(current)</span>
+                @endif
+              </a>
+            </li> 
+            <li class="nav-item ">
+              <a class="nav-link" href="{{route('allProducts')}}">Our Products</a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('showCart') ? 'active' : '' }}">
+              <a class="nav-link" href="{{route('showCart')}}">My Cart</a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('wishlist') ? 'active' : '' }}">
+              <a class="nav-link" href="{{route('wishlist')}}">My Wishlist</a>
+            </li>
+            <li class="nav-item {{ request()->is('about.html') ? 'active' : '' }}">
+              <a class="nav-link" href="{{asset("about.html")}}">About Us</a>
+            </li>
+            <li class="nav-item {{ request()->is('contact.html') ? 'active' : '' }}">
+              <a class="nav-link" href="{{asset("contact.html")}}">Contact Us</a>
+            </li>
         </ul>
       </div>
     </div>

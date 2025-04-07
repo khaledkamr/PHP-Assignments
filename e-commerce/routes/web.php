@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,9 +37,19 @@ Route::controller(ProductController::class)->group(function() {
 Route::controller(UserProductController::class)->group(function() {
     Route::get('products', 'all')->name('allProducts');
     Route::get('products/show/{id}', 'show')->name('showProduct');
-    Route::post('products/addToCart/{id}', 'addToCart')->name('addToCart');
-    Route::get('products/Cart', 'showCart')->name('showCart');
+    
+    Route::middleware('auth')->group(function() {
+        Route::post('products/addToCart/{id}', 'addToCart')->name('addToCart');
+        Route::get('products/Cart', 'showCart')->name('showCart');
+        Route::post('products/makeOrder', 'makeOrder')->name('makeOrder');
+    });
+    
+});
 
+Route::controller(HomeController::class)->group(function() {
+    Route::get('home', 'all')->name('home');
+    Route::post('products/addToWishlist/{id}', 'addToWishlist')->name('addToWishlist');
+    Route::get('products/wishlist', 'wishlist')->name('wishlist');
 });
 
 Route::get('change/{lang}', function($lang) {
