@@ -15,6 +15,7 @@ This document outlines the modifications made to an existing Laravel 11 e-commer
 - Added clear cart button
 - Added total price display
 
+
 ## Wishlist Modifications
 
 ### HomeController Updates
@@ -23,3 +24,14 @@ This document outlines the modifications made to an existing Laravel 11 e-commer
 
 ### Home Page Updates
 - Enhanced the wishlist button to dynamically toggle between "Add to Wishlist" and "Remove from Wishlist" states.
+
+
+## Email Notification System
+
+### ProductController Updates
+- Updated `makeOrder()`: Sends an email notification to the user upon successful order creation
+
+### New Components
+- Added `OrderConfirmation` Mailable: A new class in `app/Mail` to handle email structure and content
+- Added `emails/order_confirmation.blade.php`: Email template displaying ordered products, quantities, and total price
+
