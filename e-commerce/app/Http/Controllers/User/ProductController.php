@@ -8,6 +8,9 @@ use App\Models\OrderDetails;
 use App\Models\Product;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class ProductController extends Controller
 {
@@ -100,7 +103,8 @@ class ProductController extends Controller
 
     public function makeOrder(Request $request) {
         $cart = session()->get('cart');
-        $user_id = auth()->user()->id;
+        $user_id = FacadesAuth::user()->id;
+
         $order = Order::create([
             'user_id' => $user_id,
             'requiredDate' => $request->requiredDate
@@ -115,8 +119,16 @@ class ProductController extends Controller
             ]);
         }
 
+        $totalPrice = array_sum(array_column($cart, 'price'));
+
+        Mail::to(FacadesAuth::user()->email)->send(new OrderConfirmation(
+            $cart, 
+            $totalPrice, 
+            now()->toDateString()
+        ));
+
         session()->forget('cart');
-        return redirect()->back()->with('success', 'Order created successfully!');
+        return redirect()->back()->with('success', 'Order created successfully! A confirmation email has been sent.');
     }
 
 }
