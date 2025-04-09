@@ -28,10 +28,22 @@ This document outlines the modifications made to an existing Laravel 11 e-commer
 
 ## Email Notification System
 
+
+
+### User Model Updates
+- Implemented `MustVerifyEmail` interface: Ensures users verify their email addresses before full account access
+
+### AppServiceProvider Updates
+- Modified `boot()` method: Customizes the email verification notification with a subject, message, and action button linking to the verification URL
+
+### New Components
+- Added `OrderConfirmation` Mailable: A new class in `app/Mail` to handle order confirmation email structure and content
+- Added `emails/order_confirmation.blade.php`: Email template displaying ordered products, quantities, and total price
+
 ### ProductController Updates
 - Updated `makeOrder()`: Sends an email notification to the user upon successful order creation
 
-### New Components
-- Added `OrderConfirmation` Mailable: A new class in `app/Mail` to handle email structure and content
-- Added `emails/order_confirmation.blade.php`: Email template displaying ordered products, quantities, and total price
-
+### Functionality
+- **Email Verification**: New users receive an email with a verification link to confirm their email address
+- **Password Reset**: When a user clicks "Forgot Password," an email is sent with a link to reset their password, followed by automatic login upon successful reset
+- **Order Confirmation**: When an order is placed, an email is sent immediately with order details (products, quantities, total price)
