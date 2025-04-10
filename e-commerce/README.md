@@ -28,8 +28,6 @@ This document outlines the modifications made to an existing Laravel 11 e-commer
 
 ## Email Notification System
 
-
-
 ### User Model Updates
 - Implemented `MustVerifyEmail` interface: Ensures users verify their email addresses before full account access
 
@@ -47,3 +45,29 @@ This document outlines the modifications made to an existing Laravel 11 e-commer
 - **Email Verification**: New users receive an email with a verification link to confirm their email address
 - **Password Reset**: When a user clicks "Forgot Password," an email is sent with a link to reset their password, followed by automatic login upon successful reset
 - **Order Confirmation**: When an order is placed, an email is sent immediately with order details (products, quantities, total price)
+
+
+## Social Login Integration
+
+### New Components
+- Added `SocialiteController`: A new controller in `app/Http/Controllers` to manage GitHub login flow:
+  - `redirectToProvider()`: Initiates the GitHub OAuth redirect
+  - `handleProviderCallback()`: Processes the callback, logs in existing users, or registers new users with GitHub data
+  - Added Socialite routes in `web.php`: 
+    - `/{provider}/redirect`: Redirects users to GitHub for authentication
+    - `/{provider}/callback`: Handles the callback from GitHub to log in or register users
+
+### Login Page Updates
+- Modified `login.blade.php`: Added a "Sign in with GitHub" button
+
+### Service Configuration Updates
+- Updated `config/services.php`: Added GitHub configuration with client ID, client secret, and redirect URL for OAuth integration
+
+### Environment Configuration
+- Updated `.env`: Added `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` for GitHub OAuth credentials
+
+### Functionality
+- **GitHub Login**: Users can log in or sign up using their GitHub account
+  - If the email exists, logs in the user
+  - If new, creates a user with GitHub name, email, and provider details, then logs them in
+- Redirects to dashboard with a success message after authentication

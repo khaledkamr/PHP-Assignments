@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use Illuminate\Support\Facades\Route;
@@ -64,4 +65,9 @@ Route::get('change/{lang}', function($lang) {
         session()->put('lang', 'ar');
     }
     return redirect()->back();
+});
+
+Route::controller(SocialiteController::class)->group(function() {
+    Route::get('/{provider}/redirect', 'redirectToProvider');
+    Route::get('/{provider}/callback', 'handleProviderCallback');
 });
