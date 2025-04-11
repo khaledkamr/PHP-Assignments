@@ -10,6 +10,8 @@ The assignments cover a range of topics, including:
 - Working with databases
 - Sessions and cookies
 - Object-oriented programming in PHP
+- Model-View-Controller (MVC) architecture
+- Building applications with the Laravel framework
 
 ## About This Repository
 
